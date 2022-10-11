@@ -10,12 +10,26 @@
 <body>
   <h1>Rock, Paper, Scissors!</h1>
   <script>
-    // Computer prompts player, "Would you like to play RPS? (y/n)"
-    // Player responds y or n.
-    // Evaluate y or n response:
-    // If no, return message to player, "Maybe another time."; program ends
-    // If yes, return message to player, "Great! Best of five rounds wins. Let's get started: type in your choice - rock, paper or scissors - and press enter."
-    // Evaluate the response of the player: valid or invalid?
+    "use strict";
+    function playOrNot(choice) {
+      if (choice === "Y") {
+        return true;
+      } else {
+        return console.log("Perhaps another time.");
+      }
+    } // Evaluate player choice.
+
+    let choice = prompt("Would you like to play Rock, Paper, Scissors?\nY/N",); // Prompt player.
+ 
+    if ( playOrNot(choice) ) {
+      console.log("Let's go. Best of five rounds wins.");
+    } else {
+      console.log("Goodbye.");
+    } // Message player re prompted choice.
+
+    //function playRound(playerSelection, computerSelection) {
+       // my code here.
+    // }  // Evaluate the response of the player: valid or invalid?
     // If invalid response, return message to player, "Sorry, I didn't understand what you typed. Please try your choice again, and remember to go with rock, paper or scissors." 
     // If valid response, run a function called getComputerChoice to return a randomized value. 
     // Evaluate the valid player choice against the computer's choice.
