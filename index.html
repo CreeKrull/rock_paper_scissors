@@ -27,7 +27,7 @@
     if ( playOrNot(choice) ) {
       console.log("Let's go.");
       getComputerSelection(computerSelection);
-      // playRound(playerSelection, computerSelection);
+      playRound(playerSelection, computerSelection);
     } else {
       console.log("Goodbye.");
     } 
@@ -42,28 +42,28 @@
       return computerSelection;
     }
     
-    // function playRound(playerSelection, computerSelection) {
-      // playerSelection = (prompt("Enter 'rock,' 'paper' or 'scissors'")); 
+    function playRound(playerSelection, computerSelection) {
+      playerSelection = (prompt("Enter 'rock,' 'paper' or 'scissors'")); 
 
-      // playerSelection = playerSelection.toLowerCase();
+      playerSelection = playerSelection.toLowerCase();
 
-      // switch (playerSelection) {
-        // case (playOptions[0]):
-          // console.log("rock is a valid option.");
-          // break;
-        // case (playOptions[1]):
-          // console.log("paper is a valid option.");
-          // break;
-        // case (playOptions[2]):
-          // console.log("scissors is a valid option.");
-          // break;
-        // default:  
-          // console.log("Not a valid option. Try again");
-          // playRound();  
-      // }
+      switch (playerSelection) {
+        case (playOptions[0]):
+          console.log("rock is a valid option.");
+          break;
+        case (playOptions[1]):
+          console.log("paper is a valid option.");
+          break;
+        case (playOptions[2]):
+          console.log("scissors is a valid option.");
+          break;
+        default:  
+          console.log("Not a valid option. Try again");
+          playRound();  
+      }
 
       // Continue here with the evaluation of the winner - player vs computer
-    // }
+    }
 
     
     // Evaluate the valid player choice against the computer's choice.
