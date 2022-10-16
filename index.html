@@ -35,10 +35,10 @@
     function getComputerSelection(computerSelection) {
       console.log("Psst! I'm making my choice randomly right now.");
 
-      computerSelection = Math.floor(Math.random() * 2);
+      computerSelection = playOptions[ Math.floor(Math.random() * 2)];
 
-      console.log(`Don't tell anyone: I chose ${playOptions[ computerSelection ]}.`); 
-
+      console.log(`Tell no one! I chose ${computerSelection}.`);
+      
       return computerSelection;
     }
     
@@ -46,7 +46,8 @@
       playerSelection = (prompt("Enter 'rock,' 'paper' or 'scissors'")); 
 
       playerSelection = playerSelection.toLowerCase();
-
+      computerSelection = String(computerSelection);
+      
       switch (playerSelection) {
         case (playOptions[0]):
           console.log("rock is a valid option.");
@@ -62,7 +63,26 @@
           playRound();  
       }
 
-      // Continue here with the evaluation of the winner - player vs computer
+      console.log(typeof(playerSelection));
+      console.log(typeof(computerSelection));
+
+      /* switch (playerSelection) {
+        case (playerSelection === "paper" && computerSelection === "rock"):
+        case (playerSelection === "rock" && computerSelection === "scissors"):
+        case (playerSelection === "scissors" && computerSelection === "paper"):
+          console.log(`You win! ${playerSelection} beats ${computerSelection}.`)
+          return declareWinner = playerSelection;
+          break;
+        case (playerSelection === "paper" && computerSelection === "scissors"):
+        case (playerSelection === "rock" && computerSelection === "paper"):
+        case (playerSelection === "scissors" && computerSelection === "rock"):
+          console.log(`You lose! ${computerSelection} beats ${playerSelection}.`)
+          return declareWinner = computerSelection;
+          break;
+        default:
+          console.log("Oof, a tie. Let's try again");
+          playRound();
+      }
     }
 
     
