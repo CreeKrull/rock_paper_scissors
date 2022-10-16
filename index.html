@@ -66,7 +66,7 @@
       console.log(typeof(playerSelection));
       console.log(typeof(computerSelection));
 
-      /* switch (playerSelection) {
+      switch (playerSelection) {
         case (playerSelection === "paper" && computerSelection === "rock"):
         case (playerSelection === "rock" && computerSelection === "scissors"):
         case (playerSelection === "scissors" && computerSelection === "paper"):
@@ -81,6 +81,7 @@
           break;
         default:
           console.log("Oof, a tie. Let's try again");
+          getComputerSelection();
           playRound();
       }
     }
