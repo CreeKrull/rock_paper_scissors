@@ -17,28 +17,64 @@
       } else {
         return console.log("Perhaps another time.");
       }
-    } // Evaluate player choice.
+    } 
 
-    let choice = prompt("Would you like to play Rock, Paper, Scissors?\nY/N",); // Prompt player.
- 
+    let choice = prompt("Would you like to play Rock, Paper, Scissors?\nY/N",); 
+    var playerSelection;
+    var computerSelection;
+    const playOptions = [ "rock", "paper", "scissors" ]; // Define array that can be compared against.
+
     if ( playOrNot(choice) ) {
-      console.log("Let's go. Best of five rounds wins.");
+      console.log("Let's go.");
+      getComputerSelection(computerSelection);
+      // playRound(playerSelection, computerSelection);
     } else {
       console.log("Goodbye.");
-    } // Message player re prompted choice.
+    } 
 
-    //function playRound(playerSelection, computerSelection) {
-       // my code here.
-    // }  // Evaluate the response of the player: valid or invalid?
-    // If invalid response, return message to player, "Sorry, I didn't understand what you typed. Please try your choice again, and remember to go with rock, paper or scissors." 
-    // If valid response, run a function called getComputerChoice to return a randomized value. 
+    function getComputerSelection(computerSelection) {
+      console.log("Psst! I'm making my choice randomly right now.");
+
+      computerSelection = Math.floor(Math.random() * 2);
+
+      console.log(`Don't tell anyone: I chose ${playOptions[ computerSelection ]}.`); 
+
+      return computerSelection;
+    }
+    
+    // function playRound(playerSelection, computerSelection) {
+      // playerSelection = (prompt("Enter 'rock,' 'paper' or 'scissors'")); 
+
+      // playerSelection = playerSelection.toLowerCase();
+
+      // switch (playerSelection) {
+        // case (playOptions[0]):
+          // console.log("rock is a valid option.");
+          // break;
+        // case (playOptions[1]):
+          // console.log("paper is a valid option.");
+          // break;
+        // case (playOptions[2]):
+          // console.log("scissors is a valid option.");
+          // break;
+        // default:  
+          // console.log("Not a valid option. Try again");
+          // playRound();  
+      // }
+
+      // Continue here with the evaluation of the winner - player vs computer
+    // }
+
+    
     // Evaluate the valid player choice against the computer's choice.
-    // If both the player and the computer make the same choice, return this message: "Darn! A tie! Let's try again - enter your choice." Run the evaluation again.
-    // If the player's choice beats the computer's choice, return this message: `You win! ${playerSelection} beats ${computerSelection}!`.
-    // Otherwise, return this message: `Oooh, that smarts! ${computerSelection} always beats ${playerSelection}.`.
+      // If both the player and the computer make the same choice, return this message: "Darn! A tie! Let's try again - enter your choice." Run the evaluation again.
+      // If the player's choice beats the computer's choice, return this message: `You win! ${playerSelection} beats ${computerSelection}!`.
+      // Otherwise, return this message: `Oooh, that smarts! ${computerSelection} always beats ${playerSelection}.`.
+
     // Increment a counter variable, rounds, for the number of rounds played by 1.
     // Increment another counter variable, playerWins, by 1 if the player has won the round.
-    // Otherwise, increment a counter variable called computerWins by 1.
+      // Otherwise, increment a counter variable called computerWins by 1.
+
     // When rounds = 5, compare playerWins against computerWins.
     // Tell the player who has won the game.
 
