@@ -26,7 +26,6 @@
 
     if ( playOrNot(choice) ) {
       console.log("Let's go.");
-      getComputerSelection(computerSelection);
       playRound(playerSelection, computerSelection);
     } else {
       console.log("Goodbye.");
@@ -35,18 +34,20 @@
     function getComputerSelection(computerSelection) {
       console.log("Psst! I'm making my choice randomly right now.");
 
-      computerSelection = playOptions[ Math.floor(Math.random() * 2)];
+      computerSelection = (playOptions[ Math.floor(Math.random() * 3)]);
 
       console.log(`Tell no one! I chose ${computerSelection}.`);
       
-      return computerSelection;
-    }
+      return String(computerSelection);
+    } 
     
     function playRound(playerSelection, computerSelection) {
+      // getComputerSelection(computerSelection);
+      
       playerSelection = (prompt("Enter 'rock,' 'paper' or 'scissors'")); 
 
       playerSelection = playerSelection.toLowerCase();
-      computerSelection = String(computerSelection);
+      computerSelection = getComputerSelection() // String((playOptions[ Math.floor(Math.random() * 3)]));
       
       switch (playerSelection) {
         case (playOptions[0]):
@@ -63,35 +64,66 @@
           playRound();  
       }
 
-      console.log(typeof(playerSelection));
-      console.log(typeof(computerSelection));
+      console.log(`playerSelection ` + typeof(playerSelection) + ` ${playerSelection}`);
+      console.log(`computerSelection ` + typeof(computerSelection) + ` ${computerSelection}`);
 
-      switch (playerSelection) {
-        case (playerSelection === "paper" && computerSelection === "rock"):
-        case (playerSelection === "rock" && computerSelection === "scissors"):
-        case (playerSelection === "scissors" && computerSelection === "paper"):
-          console.log(`You win! ${playerSelection} beats ${computerSelection}.`)
-          return declareWinner = playerSelection;
-          break;
-        case (playerSelection === "paper" && computerSelection === "scissors"):
-        case (playerSelection === "rock" && computerSelection === "paper"):
-        case (playerSelection === "scissors" && computerSelection === "rock"):
-          console.log(`You lose! ${computerSelection} beats ${playerSelection}.`)
-          return declareWinner = computerSelection;
-          break;
-        default:
-          console.log("Oof, a tie. Let's try again");
-          getComputerSelection();
-          playRound();
+      function printPlayerWinMessage(playerSelection, computerSelection) {
+        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
       }
-    }
 
-    
-    // Evaluate the valid player choice against the computer's choice.
-      // If both the player and the computer make the same choice, return this message: "Darn! A tie! Let's try again - enter your choice." Run the evaluation again.
-      // If the player's choice beats the computer's choice, return this message: `You win! ${playerSelection} beats ${computerSelection}!`.
-      // Otherwise, return this message: `Oooh, that smarts! ${computerSelection} always beats ${playerSelection}.`.
+      function printPlayerLoseMessage(playerSelection, computerSelection) {
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}`); 
+      }
+          
+      if (playerSelection === "paper") {
+        if (computerSelection === "rock") {
+          printPlayerWinMessage(playerSelection, computerSelection); }
+      } 
 
+      if (playerSelection === "paper") {
+        if (computerSelection === "scissors") {
+          printPlayerLoseMessage(playerSelection, computerSelection); }
+      }
+
+      if (playerSelection === "paper") {
+        if (computerSelection === "paper") {
+          console.log("Oof, a tie. Let's try again");
+          playRound(playerSelection, computerSelection); }
+      }
+
+      if (playerSelection === "rock") {
+        if (computerSelection === "scissors") {
+          printPlayerWinMessage(playerSelection, computerSelection); }
+      } 
+
+      if (playerSelection === "rock") {
+        if (computerSelection === "paper") {
+          printPlayerLoseMessage(playerSelection, computerSelection); }
+      }
+
+      if (playerSelection === "rock") {
+        if (computerSelection === "rock") {
+          console.log("Oof, a tie. Let's try again");
+          playRound(playerSelection, computerSelection); }
+      }
+
+      if (playerSelection === "scissors") {
+        if (computerSelection === "paper") {
+          printPlayerWinMessage(playerSelection, computerSelection); }
+      } 
+
+      if (playerSelection === "scissors") {
+        if (computerSelection === "rock") {
+          printPlayerLoseMessage(playerSelection, computerSelection); }
+      }
+
+      if (playerSelection === "scissors") {
+        if (computerSelection === "scissors") {
+          console.log("Oof, a tie. Let's try again");
+          playRound(playerSelection, computerSelection); }
+      }
+    }  
+  
     // Increment a counter variable, rounds, for the number of rounds played by 1.
     // Increment another counter variable, playerWins, by 1 if the player has won the round.
       // Otherwise, increment a counter variable called computerWins by 1.
