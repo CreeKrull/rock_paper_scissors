@@ -46,66 +46,12 @@
       console.log(`playerSelection is a ` + typeof(playerSelection) + ` : ${playerSelection}`);
       console.log(`computerSelection is a ` + typeof(computerSelection) + ` : ${computerSelection}`);
 
-      if (playerSelection === "paper") {
-          if (computerSelection === "rock") {
-          printPlayerWinMessage(); }
-          playerTotalWins = Number(playerWinIncrement());
-      } 
-
-      if (playerSelection === "paper") {
-          if (computerSelection === "scissors") {
-          printPlayerLoseMessage(); }
-          computerTotalWins = Number(computerWinIncrement());
-      }
-
-      if (playerSelection === "paper") {
-          if (computerSelection === "paper") {
-          console.log("Oof, a tie. Let's try again\n ");
-          playRound(); }
-      }
-
-      if (playerSelection === "rock") {
-          if (computerSelection === "scissors") {
-          printPlayerWinMessage(); }
-          playerTotalWins = Number(playerWinIncrement());
-      } 
-
-      if (playerSelection === "rock") {
-          if (computerSelection === "paper") {
-          printPlayerLoseMessage(); }
-          computerTotalWins = Number(computerWinIncrement());
-      }
-
-      if (playerSelection === "rock") {
-          if (computerSelection === "rock") {
-          console.log("Oof, a tie. Let's try again\n ");
-          playRound(); }
-      }
-
-      if (playerSelection === "scissors") {
-          if (computerSelection === "paper") {
-          printPlayerWinMessage(); }
-          playerTotalWins = Number(playerWinIncrement());
-      } 
-
-      if (playerSelection === "scissors") {
-          if (computerSelection === "rock") {
-          printPlayerLoseMessage(); }
-          computerTotalWins = Number(computerWinIncrement());
-      }
-
-      if (playerSelection === "scissors") {
-          if (computerSelection === "scissors") {
-          console.log("Oof, a tie. Let's try again");
-          playRound(); }
-        } 
-
+      determineWinner();
         // Odd behavior: 
         // - REPETITION: Sometimes "You lose! Paper beats rock" is repeated as a console.log msg. Why?
         // - NOT WORKING: Both computerTotalWins AND playerTotalWins are incremented in tandem.
         // - INITIAL VALUE IS WRONG: Additionally, they are not incremented at the end of the first round (i.e., their values are 0 at the end of the first round). Why? Possible solution to try: put the ++ before the variable name.
         // - Sentry works great, but computerTotalWins and playerTotalWins are incremented when a tie happens. Why?
-        // SEE NOTE AT LINE 156 FOR NEXT STEPS.
     }
 
     function getComputerSelection() {
@@ -149,7 +95,7 @@
       let sentry = 1; 
       do { 
         playRound(playerSelection, computerSelection);
-            console.log(`Currently, player has won ${playerTotalWins} rounds\nand computer has won ${computerTotalWins} rounds.\n Sentry = ${sentry}\n --- --- --- --- ---`);
+            console.log(`Currently, player has won ${playerTotalWins} rounds\nand computer has won ${computerTotalWins} rounds.\n Sentry = ${sentry}\n XXXXXXXXXXXXXXXXXXX`);
             sentry++;
       } while (sentry <= 5);
 
@@ -163,11 +109,73 @@
     }
 
     function playerWinIncrement() {
-      return a++;
+      return ++a;
     }
 
     function computerWinIncrement() {
-      return b++;
+      return ++b;
+    }
+
+    function determineWinner() {
+      if (playerSelection === "paper") {
+          if (computerSelection === "rock") {
+          printPlayerWinMessage(); }
+          playerTotalWins = Number(playerWinIncrement());
+          return PlayerTotalWins;
+      } 
+
+      if (playerSelection === "paper") {
+          if (computerSelection === "scissors") {
+          printPlayerLoseMessage(); }
+          computerTotalWins = Number(computerWinIncrement());
+          return computerTotalWins;
+      }
+
+      if (playerSelection === "paper") {
+          if (computerSelection === "paper") {
+          console.log("Oof, a tie. Let's try again\n ");
+          playRound(); }
+      }
+
+      if (playerSelection === "rock") {
+          if (computerSelection === "scissors") {
+          printPlayerWinMessage(); }
+          playerTotalWins = Number(playerWinIncrement());
+          return PlayerTotalWins;
+      } 
+
+      if (playerSelection === "rock") {
+          if (computerSelection === "paper") {
+          printPlayerLoseMessage(); }
+          computerTotalWins = Number(computerWinIncrement());
+          return ComputertotalWins;
+      }
+
+      if (playerSelection === "rock") {
+          if (computerSelection === "rock") {
+          console.log("Oof, a tie. Let's try again\n ");
+          playRound(); }
+      }
+
+      if (playerSelection === "scissors") {
+          if (computerSelection === "paper") {
+          printPlayerWinMessage(); }
+          playerTotalWins = Number(playerWinIncrement());
+          return PlayerTotalWins;
+      } 
+
+      if (playerSelection === "scissors") {
+          if (computerSelection === "rock") {
+          printPlayerLoseMessage(); }
+          computerTotalWins = Number(computerWinIncrement());
+          return computerTotalWins;
+      }
+
+      if (playerSelection === "scissors") {
+          if (computerSelection === "scissors") {
+          console.log("Oof, a tie. Let's try again");
+          playRound(); }
+        } 
     }
 
   </script>
