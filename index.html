@@ -11,7 +11,7 @@
   <h1>Rock, Paper, Scissors!</h1>
   <script>
     "use strict";
-    function playOrNot(choice) {
+    function playOrNot(choice) { // Validates user's intent to play game.
       if (choice === "Y") {
         return true;
       } else {
@@ -19,11 +19,11 @@
       }
     } 
 
-    let choice = prompt("Would you like to play Rock, Paper, Scissors?\nY/N",); 
+    let choice = prompt("Would you like to play Rock, Paper, Scissors?\nY/N",); // Solicits user input.
 
-    const playOptions = [ "rock", "paper", "scissors" ];
+    const playOptions = [ "rock", "paper", "scissors" ]; // Define allowed play options.
   
-    let computerSelection;
+    let computerSelection; // Defines variables.
     let playerSelection;
     let playerTotalWins = 0;
     let computerTotalWins = 0;
@@ -32,7 +32,7 @@
     let a = 0;
     let b = 0;
 
-    if ( playOrNot(choice) ) {
+    if ( playOrNot(choice) ) {  // Initiates a game on basis of user's validated intention to play.
       console.log("Let's go.\nBest of five rounds wins!");
       game();
       }
@@ -40,27 +40,27 @@
           console.log("Goodbye.");
         } 
       
-    function playRound() {     
-      computerSelection = getComputerSelection();
+    function playRound() {     // Conducts a single round of rock, paper, scissors.
+      computerSelection = getComputerSelection(); 
       getPlayerSelection();
       
-      console.log(`playerSelection is a ` + typeof(playerSelection) + ` : ${playerSelection}`);
-      console.log(`computerSelection is a ` + typeof(computerSelection) + ` : ${computerSelection}`);
+      // console.log(`playerSelection is a ` + typeof(playerSelection) + ` : ${playerSelection}`);
+      // console.log(`computerSelection is a ` + typeof(computerSelection) + ` : ${computerSelection}`);
 
       determineWinner();
     }  
 
-    function getComputerSelection() {
-        console.log("Psst! I'm making my choice randomly right now.");
+    function getComputerSelection() { // Uses a random # to select computer's selection from within the... 
+        console.log("Psst! I'm making my choice randomly right now."); // (cont'd) playOptions array.
         return String(playOptions[ Math.floor(Math.random() * 3)]);
     } 
 
-    function getPlayerSelection() {
+    function getPlayerSelection() { // Solicits user input.
       let raw_choice = prompt("Enter 'rock,' 'paper' or 'scissors'");
-      validatePlayerSelection(raw_choice);
-    }
+      validatePlayerSelection(raw_choice); // Validates user input against playOptions array & normalizes..
+    } // (cont'd) into lower-case format via redefinition. Otherwise, re-solicits user.
     
-    function validatePlayerSelection(raw_choice) {
+    function validatePlayerSelection(raw_choice) { // See note above at lines 60-61.
           switch (raw_choice.toLowerCase()) {
           case (playOptions[0]):
             console.log("rock is a valid option.");
@@ -80,32 +80,32 @@
       }
     } 
       
-    function printPlayerWinMessage() {
+    function printPlayerWinMessage() { // Provides feedback for player in the event they win a round.
         console.log(`You win! ${playerSelection} beats ${computerSelection}`);
     }
 
-    function printPlayerLoseMessage() {
+    function printPlayerLoseMessage() { // Gives feedback to player in the event they lose a round
         console.log(`You lose! ${computerSelection} beats ${playerSelection}`); 
     }
 
-    function game() {
+    function game() { // Governs playing of five rounds of rock, paper, scissors.
 
-      do { 
+      do {  // Conducts five rounds of play while updating player of status.
         playRound();
           console.log(`Currently, player has won ${playerTotalWins} rounds\nand computer has won ${computerTotalWins} rounds.\n Sentry = ${sentry}\n --- --- --- ---`);
           sentry++; 
       } while (sentry <= 5);
 
-      if (playerTotalWins > computerTotalWins) {
+      if (playerTotalWins > computerTotalWins) { // After sentry reaches 5, this determines game winner.
             console.log(`Play is over, and you have won by a score of ${playerTotalWins} to ${computerTotalWins}!`);
             return;
           } else {
             console.log(`Play is over, and you have lost by a score of ${playerTotalWins} to ${computerTotalWins}.`); }
     }
 
-    function determineWinner() {
-      if (playerSelection === "paper") {
-          if (computerSelection === "rock") {
+    function determineWinner() { // This determines the winner of each round of play.
+      if (playerSelection === "paper") { // Definitely a candidate for refactoring; I'd still like to 
+          if (computerSelection === "rock") { // (cont'd) see this done with a switch statement.
           printPlayerWinMessage(); 
           playerTotalWins = ++playerTotalWins; 
           return playerTotalWins;}
