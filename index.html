@@ -20,39 +20,35 @@
     } 
 
     let choice = prompt("Would you like to play Rock, Paper, Scissors?\nY/N",); 
+
     const playOptions = [ "rock", "paper", "scissors" ];
+  
     let computerSelection;
     let playerSelection;
     let playerTotalWins = 0;
     let computerTotalWins = 0;
-    let sentry = 0; 
+    let sentry = 1; 
     let raw_choice;
     let a = 0;
     let b = 0;
 
     if ( playOrNot(choice) ) {
       console.log("Let's go.\nBest of five rounds wins!");
-      game() 
-        }
+      game();
+      }
         else {
-            console.log("Goodbye.");
+          console.log("Goodbye.");
         } 
       
     function playRound() {     
-
-      computerSelection = (getComputerSelection());
-      playerSelection = (getPlayerSelection()); 
-
+      computerSelection = getComputerSelection();
+      getPlayerSelection();
+      
       console.log(`playerSelection is a ` + typeof(playerSelection) + ` : ${playerSelection}`);
       console.log(`computerSelection is a ` + typeof(computerSelection) + ` : ${computerSelection}`);
 
       determineWinner();
-        // Odd behavior: 
-        // - REPETITION: Sometimes "You lose! Paper beats rock" is repeated as a console.log msg. Why?
-        // - NOT WORKING: Both computerTotalWins AND playerTotalWins are incremented in tandem.
-        // - INITIAL VALUE IS WRONG: Additionally, they are not incremented at the end of the first round (i.e., their values are 0 at the end of the first round). Why? Possible solution to try: put the ++ before the variable name.
-        // - Sentry works great, but computerTotalWins and playerTotalWins are incremented when a tie happens. Why?
-    }
+    }  
 
     function getComputerSelection() {
         console.log("Psst! I'm making my choice randomly right now.");
@@ -60,26 +56,28 @@
     } 
 
     function getPlayerSelection() {
-        let raw_choice = prompt("Enter 'rock,' 'paper' or 'scissors'");
-        validatePlayerSelection(raw_choice);
-        return String(raw_choice);
+      let raw_choice = prompt("Enter 'rock,' 'paper' or 'scissors'");
+      validatePlayerSelection(raw_choice);
     }
-
+    
     function validatePlayerSelection(raw_choice) {
-            switch (raw_choice.toLowerCase()) {
-            case (playOptions[0]):
+          switch (raw_choice.toLowerCase()) {
+          case (playOptions[0]):
             console.log("rock is a valid option.");
-            break;
-            case (playOptions[1]):
+            playerSelection = 'rock';
+          break;
+          case (playOptions[1]):
             console.log("paper is a valid option.");
-            break;
-            case (playOptions[2]):
+            playerSelection = 'paper';
+          break;
+          case (playOptions[2]):
             console.log("scissors is a valid option.");
-            break;
-            default:  
-            console.log("Not a valid option. Try again");
-            playerSelection();
-        }
+            playerSelection = 'scissors';
+          break;
+          default:  
+            console.log("Not a valid option, dude. Try again");
+            getPlayerSelection();
+      }
     } 
       
     function printPlayerWinMessage() {
@@ -90,45 +88,34 @@
         console.log(`You lose! ${computerSelection} beats ${playerSelection}`); 
     }
 
-
     function game() {
-      let sentry = 1; 
+
       do { 
-        playRound(playerSelection, computerSelection);
-            console.log(`Currently, player has won ${playerTotalWins} rounds\nand computer has won ${computerTotalWins} rounds.\n Sentry = ${sentry}\n XXXXXXXXXXXXXXXXXXX`);
-            sentry++;
+        playRound();
+          console.log(`Currently, player has won ${playerTotalWins} rounds\nand computer has won ${computerTotalWins} rounds.\n Sentry = ${sentry}\n --- --- --- ---`);
+          sentry++; 
       } while (sentry <= 5);
 
-      // HERE: this if-then statement is never executed. Idea: pass the variables playerSelection and computerSelection to a function called determineWinner which would nest the if-then block above that determines who wins each individual round.
-      // Desired outcome: RETURN playerTotalWins or ComputerTotalWins for win/loss outcomes, thereby ending the determineWinner function. In ties, playRound would be invoked again, as per usual. 
       if (playerTotalWins > computerTotalWins) {
-            console.log(`Play is over, and you have won by a score of ${PlayerTotalWins} to ${computerTotalWins}!`);
+            console.log(`Play is over, and you have won by a score of ${playerTotalWins} to ${computerTotalWins}!`);
             return;
           } else {
-            console.log(`Play is over, and you have lost by a score of ${PlayerTotalWins} to ${computerTotalWins}.`); }
-    }
-
-    function playerWinIncrement() {
-      return ++a;
-    }
-
-    function computerWinIncrement() {
-      return ++b;
+            console.log(`Play is over, and you have lost by a score of ${playerTotalWins} to ${computerTotalWins}.`); }
     }
 
     function determineWinner() {
       if (playerSelection === "paper") {
           if (computerSelection === "rock") {
-          printPlayerWinMessage(); }
-          playerTotalWins = Number(playerWinIncrement());
-          return PlayerTotalWins;
+          printPlayerWinMessage(); 
+          playerTotalWins = ++playerTotalWins; 
+          return playerTotalWins;}
       } 
 
       if (playerSelection === "paper") {
           if (computerSelection === "scissors") {
-          printPlayerLoseMessage(); }
-          computerTotalWins = Number(computerWinIncrement());
-          return computerTotalWins;
+          printPlayerLoseMessage(); 
+          computerTotalWins = ++computerTotalWins; 
+          return computerTotalWins;}
       }
 
       if (playerSelection === "paper") {
@@ -139,16 +126,16 @@
 
       if (playerSelection === "rock") {
           if (computerSelection === "scissors") {
-          printPlayerWinMessage(); }
-          playerTotalWins = Number(playerWinIncrement());
-          return PlayerTotalWins;
+          printPlayerWinMessage(); 
+          playerTotalWins = ++playerTotalWins; 
+          return playerTotalWins; }
       } 
 
       if (playerSelection === "rock") {
           if (computerSelection === "paper") {
-          printPlayerLoseMessage(); }
-          computerTotalWins = Number(computerWinIncrement());
-          return ComputertotalWins;
+          printPlayerLoseMessage(); 
+          computerTotalWins = ++computerTotalWins; 
+          return computerTotalWins; }
       }
 
       if (playerSelection === "rock") {
@@ -159,16 +146,16 @@
 
       if (playerSelection === "scissors") {
           if (computerSelection === "paper") {
-          printPlayerWinMessage(); }
-          playerTotalWins = Number(playerWinIncrement());
-          return PlayerTotalWins;
+          printPlayerWinMessage(); 
+          playerTotalWins = ++playerTotalWins; 
+          return playerTotalWins; }
       } 
 
       if (playerSelection === "scissors") {
           if (computerSelection === "rock") {
-          printPlayerLoseMessage(); }
-          computerTotalWins = Number(computerWinIncrement());
-          return computerTotalWins;
+          printPlayerLoseMessage(); 
+          computerTotalWins = ++computerTotalWins; 
+          return computerTotalWins; }
       }
 
       if (playerSelection === "scissors") {
